@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.5.0'
+}
+
+apply plugin: 'application'
+mainClassName = "HelloWorldKt"
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets{
+    main.java.srcDirs += 'src/main/kotlin'
+}
+
+jar{
+    manifest{
+        attributes 'Main-Class': 'HelloWorldKt'
+    }
+    from {
+        configurations.compile.collect{it.isDirectory() ? it : zipTree(it) }
+
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.5.21"
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+test {
+    useJUnitPlatform()
+}
