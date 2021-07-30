@@ -6,3 +6,4 @@ fun main(args: Array<String>){
     if(north_direction==Direction.NORTH.value) println("Going North")
     else println("No idea where you're going")
 }
+
